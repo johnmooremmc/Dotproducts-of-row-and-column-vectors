@@ -8,7 +8,8 @@ int main()
     int arows, bcolumns, dimension;
     int i, j, k;
     int dot = 0;
-
+    int amag = 0, bmag = 0;
+    float anglerad, angledeg, magnitude;
 
     printf("Dimensionality Degree: ");
     scanf("%d", &dimension);
@@ -50,6 +51,7 @@ int main()
          for(i=0; i<arows; i++){
             for(j=0; j<dimension; j++) {
                 printf("%d ", a[i][j]);
+                amag += a[i][j];
             }
             printf("\n");
         }
@@ -60,13 +62,19 @@ int main()
          for(i=0; i<dimension; i++){
             for(j=0; j<bcolumns; j++) {
                 printf("%d ", b[i][j]);
+                bmag += b[i][j];
             }
             printf("\n");
         }
 
-        printf("\n");
-        printf("Dot product: %d", dot);
+        magnitude = sqrt(amag) * sqrt(bmag);
+        anglerad = acos(dot/magnitude);
+        angledeg = 57.2957795*anglerad;
 
+
+        printf("\n");
+        printf("Dot product: %d \n", dot);
+        printf("Angle: %f : %f \n", anglerad, angledeg);
 
     return 0;
 }
